@@ -43,13 +43,6 @@ else:
                 logger.exception()
         else:
             logging.info("redeploy %s from %s", args.live, args.staged)
-            # lines1 = json.dumps(live_attrs, indent=4).split("\n")
-            # lines2 = json.dumps(staged_attrs, indent=4).split("\n")
-            # for l1, l2 in zip(lines1, lines2):
-            #     prefix = "\x1b[1m" if (l1 != l2) else ""
-            #     suffix = "\x1b[0m" if (l1 != l2) else ""
-            #     if l1 != l2:
-            #         print("%s%-80s%-80s%s" % (prefix, l1, l2, suffix))
             logger.info("%s: stopping", live_container.name)
             live_container.stop()
             logger.info("%s: removing", live_container.name)
