@@ -5,7 +5,7 @@ import json
 import urllib3
 
 from . import config
-from .deep_filter import deep_filter
+from . import dict_filter
 
 urllib3.disable_warnings()
 
@@ -30,8 +30,8 @@ else:
         logger.error("%s container not found", args.staged)
     else:
         # Get container attributes
-        live_attrs = deep_filter(live_container.attrs, config.blacklist)
-        staged_attrs = deep_filter(staged_container.attrs, config.blacklist)
+        live_attrs = dict_filter(live_container.attrs, config.blacklist)
+        staged_attrs = dict_filter(staged_container.attrs, config.blacklist)
         # Attributes are equal: no redeploy; but remove staging container
         if live_attrs == staged_attrs:
             logger.info("%s: redeployment not needed", args.live)
